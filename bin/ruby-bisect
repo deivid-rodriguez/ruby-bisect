@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+source "${0%/*}/../share/ruby-bisect/ruby-bisect.sh"
+
+parse_options "$@"
+
+clone_ruby
+
+parse_revisions
+
+ruby_bisect
+
+cleanup
