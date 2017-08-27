@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
-source "${0%/*}/../share/ruby-bisect/ruby-bisect.sh"
+RUBY_BISECT_DIR=$(cd "${BASH_SOURCE[0]%/*}/../share/ruby-bisect" && pwd)
+
+source "$RUBY_BISECT_DIR/ruby-bisect.sh"
 
 parse_options "$@"
 

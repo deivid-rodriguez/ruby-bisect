@@ -1,11 +1,10 @@
 #!/usr/bin/env bash
 
 ruby_bisect_version="0.0.1"
-ruby_bisect_dir=$(cd "${BASH_SOURCE[0]%/*}" && pwd)
 project_dir=$(pwd)
 ruby_dir="$HOME/src/ruby-head"
 
-source "$ruby_bisect_dir/util.sh"
+source "$RUBY_BISECT_DIR/util.sh"
 
 #
 # Runs git inside the cloned copy of ruby sources
@@ -112,7 +111,7 @@ function ruby_bisect() {
   git_bisect start
   git_bisect good "$good_revision"
   git_bisect bad "$bad_revision"
-  git_bisect run "$ruby_bisect_dir/check_revision.sh" "$project_dir" -- "$command"
+  git_bisect run "$RUBY_BISECT_DIR/check_revision.sh" "$project_dir" -- "$command"
   git_in_ruby_dir clean -fd && git_bisect reset
 }
 
