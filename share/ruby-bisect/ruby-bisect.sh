@@ -4,6 +4,7 @@ ruby_bisect_version="0.0.1"
 project_dir=$(pwd)
 ruby_dir="$HOME/src/ruby-head"
 
+# shellcheck source=share/ruby-bisect/util.sh
 source "$RUBY_BISECT_DIR/util.sh"
 
 #

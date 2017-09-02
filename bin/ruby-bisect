@@ -2,6 +2,7 @@
 
 RUBY_BISECT_DIR=$(cd "${BASH_SOURCE[0]%/*}/../share/ruby-bisect" && pwd)
 
+# shellcheck source=share/ruby-bisect/ruby-bisect.sh
 source "$RUBY_BISECT_DIR/ruby-bisect.sh"
 
 parse_options "$@"

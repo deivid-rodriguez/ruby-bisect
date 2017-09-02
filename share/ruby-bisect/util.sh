@@ -25,9 +25,7 @@ function n_args() {
 # Runs a command in a quiet manner
 #
 function quiet() {
-  err=$("$@" 2>&1)
-
-  if [[ "$?" != "0" ]]
+  if ! err=$("$@" 2>&1)
   then
     echo -e "*** Error: \n$err"
     exit 1
