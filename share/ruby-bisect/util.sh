@@ -27,7 +27,7 @@ function n_args() {
 function quiet() {
   if ! err=$("$@" 2>&1)
   then
-    echo -e "*** Error: \n$err"
+    err "$err"
     exit 1
   fi
 }
@@ -39,4 +39,11 @@ function run() {
   echo "running '$*'..."
 
   quiet "$@"
+}
+
+#
+# Prints a program error
+#
+function err() {
+  echo -e "*** Error: \n$1"
 }
