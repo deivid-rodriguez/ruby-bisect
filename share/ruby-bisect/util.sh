@@ -52,3 +52,11 @@ function err() {
     echo "*** Error: $1" >&2
   fi
 }
+
+#
+# Prints a error message and exits
+#
+function fail() {
+  err "$1"
+  exit 1
+}

@@ -79,8 +79,7 @@ function parse_options() {
 
   if (($# == 0))
   then
-    echo "GOOD_SVN_ID and COMMAND required" >&2
-    exit 1
+    fail "GOOD_SVN_ID and COMMAND required"
   fi
 
   good_svn_id=$1
@@ -94,8 +93,7 @@ function parse_options() {
 
   if (($# == 0))
   then
-    echo "COMMAND required" >&2
-    exit 1
+    fail "COMMAND required"
   fi
 
   command=$*
