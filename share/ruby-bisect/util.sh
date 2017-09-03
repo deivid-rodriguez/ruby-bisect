@@ -45,5 +45,10 @@ function run() {
 # Prints a program error
 #
 function err() {
-  echo -e "*** Error: \n$1" >&2
+  if [[ "$1" == *$'\n'* ]]
+  then
+    echo -e "*** Error: \n$1" >&2
+  else
+    echo "*** Error: $1" >&2
+  fi
 }
