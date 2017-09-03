@@ -79,7 +79,7 @@ function parse_options() {
 
   if (($# == 0))
   then
-    echo "ruby-bisect: GOOD_SVN_ID and COMMAND required" >&2
+    echo "GOOD_SVN_ID and COMMAND required" >&2
     exit 1
   fi
 
@@ -94,7 +94,7 @@ function parse_options() {
 
   if (($# == 0))
   then
-    echo "ruby-bisect: COMMAND required" >&2
+    echo "COMMAND required" >&2
     exit 1
   fi
 
