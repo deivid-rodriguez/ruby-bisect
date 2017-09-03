@@ -45,5 +45,5 @@ function run() {
 # Prints a program error
 #
 function err() {
-  echo -e "*** Error: \n$1"
+  echo -e "*** Error: \n$1" >&2
 }
