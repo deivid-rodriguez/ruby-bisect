@@ -58,6 +58,7 @@ function usage() {
 
     -V, --version  Display ruby-bisect's version
     -h, --help     Display this help message
+    -c, --cleanup  Remove cloned ruby after bisection
 
 USAGE
 }
@@ -74,6 +75,10 @@ function parse_options() {
     -V|--version)
       echo "ruby-bisect version $ruby_bisect_version"
       exit
+      ;;
+    -c|--cleanup)
+      CLEANUP=1
+      shift
       ;;
   esac
 
@@ -125,5 +130,8 @@ function ruby_bisect() {
 # Final cleanup, gets rid of the cloned ruby
 #
 function cleanup() {
-  run rm -rf "$ruby_dir"
+  if [[ "$CLEANUP" -eq "1" ]]
+  then
+    run rm -rf "$ruby_dir"
+  fi
 }
