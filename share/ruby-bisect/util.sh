@@ -58,5 +58,8 @@ function err() {
 #
 function fail() {
   err "$1"
+
+  usage
+
   exit 1
 }
