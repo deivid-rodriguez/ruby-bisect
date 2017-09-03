@@ -44,13 +44,20 @@ function usage() {
 
   ruby-bisect <GOOD_SVN_ID>[ <BAD_SVN_ID>] -- COMMAND
 
-  @example
+  EXAMPLE
 
   ruby-bisect 55016 55039 -- bundle exec rake
+
+  DESCRIPTION
 
   Given a known good revision, it finds the commit in ruby-core that broke your
   program. You can optionally specify a bad revision too, otherwise the latest
   revision in ruby-core with be used as the bad commit.
+
+  OPTIONS
+
+    -V, --version  Display ruby-bisect's version
+    -h, --help     Display this help message
 
 USAGE
 }
