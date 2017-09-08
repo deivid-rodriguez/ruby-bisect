@@ -17,14 +17,14 @@ style and bash lessons from [ruby-install].
   against ruby-core latest master.
 
 ```
-$ ruby-bisect 55000 -- myscript.rb
+ruby-bisect 55000 -- myscript.rb
 ```
 
 * Bisect `myscript.rb`, known to work with MRI revision r55000 and known to
   fail with MRI revision r55100.
 
 ```
-$ ruby-bisect 55000 551000 -- myscript.rb
+ruby-bisect 55000 551000 -- myscript.rb
 ```
 
 [bash]: https://www.gnu.org/software/bash/
