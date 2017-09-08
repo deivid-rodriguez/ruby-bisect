@@ -1,11 +1,12 @@
 #!/usr/bin/env bash
 
 ruby_bisect_version="0.0.1"
-ruby_bisect_dir=$(cd "${BASH_SOURCE[0]%/*}" && pwd)
 project_dir=$(pwd)
 ruby_dir="$HOME/src/ruby-head"
+git_extras_dir="$RUBY_BISECT_DIR/vendor/git-extras"
 
-source "$ruby_bisect_dir/util.sh"
+# shellcheck source=share/ruby-bisect/util.sh
+source "$RUBY_BISECT_DIR/util.sh"
 
 #
 # Runs git inside the cloned copy of ruby sources
@@ -25,7 +26,7 @@ function git_bisect() {
 # Clones Ruby repo and switches to it
 #
 function clone_ruby() {
-  run git clone git@github.com:ruby/ruby.git "$ruby_dir"
+  "$git_extras_dir/bin/git-force-clone" git@github.com:ruby/ruby.git "$ruby_dir"
 }
 
 #
@@ -44,13 +45,21 @@ function usage() {
 
   ruby-bisect <GOOD_SVN_ID>[ <BAD_SVN_ID>] -- COMMAND
 
-  @example
+  EXAMPLE
 
   ruby-bisect 55016 55039 -- bundle exec rake
+
+  DESCRIPTION
 
   Given a known good revision, it finds the commit in ruby-core that broke your
   program. You can optionally specify a bad revision too, otherwise the latest
   revision in ruby-core with be used as the bad commit.
+
+  OPTIONS
+
+    -V, --version  Display ruby-bisect's version
+    -h, --help     Display this help message
+    -c, --cleanup  Remove cloned ruby after bisection
 
 USAGE
 }
@@ -68,12 +77,15 @@ function parse_options() {
       echo "ruby-bisect version $ruby_bisect_version"
       exit
       ;;
+    -c|--cleanup)
+      CLEANUP=1
+      shift
+      ;;
   esac
 
   if (($# == 0))
   then
-    echo "ruby-bisect: GOOD_SVN_ID and COMMAND required" >&2
-    exit 1
+    fail "GOOD_SVN_ID and COMMAND required"
   fi
 
   good_svn_id=$1
@@ -87,11 +99,10 @@ function parse_options() {
 
   if (($# == 0))
   then
-    echo "ruby-bisect: COMMAND required" >&2
-    exit 1
+    fail "COMMAND required"
   fi
 
-  command=$*
+  cmd=$*
 }
 
 function parse_revisions() {
@@ -112,7 +123,7 @@ function ruby_bisect() {
   git_bisect start
   git_bisect good "$good_revision"
   git_bisect bad "$bad_revision"
-  git_bisect run "$ruby_bisect_dir/check_revision.sh" "$project_dir" -- "$command"
+  git_bisect run "$RUBY_BISECT_DIR/check_revision.sh" "$project_dir" -- "$cmd"
   git_in_ruby_dir clean -fd && git_bisect reset
 }
 
@@ -120,5 +131,8 @@ function ruby_bisect() {
 # Final cleanup, gets rid of the cloned ruby
 #
 function cleanup() {
-  run rm -rf "$ruby_dir"
+  if [[ "$CLEANUP" -eq "1" ]]
+  then
+    run rm -rf "$ruby_dir"
+  fi
 }

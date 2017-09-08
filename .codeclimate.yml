@@ -1,0 +1,15 @@
+---
+
+engines:
+  grep:
+    enabled: true
+    config:
+      patterns:
+        no-trailing-whitespace:
+          pattern: \s*$
+          annotation: "Don't leave trailing whitespace"
+          severity: minor
+          categories: Style
+
+  shellcheck:
+    enabled: true

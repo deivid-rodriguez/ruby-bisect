@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 
-source "${0%/*}/util.sh"
+RUBY_BISECT_DIR=$(cd "${BASH_SOURCE[0]%/*}" && pwd)
+
+# shellcheck source=share/ruby-bisect/util.sh
+source "$RUBY_BISECT_DIR/util.sh"
 
 #
 # Finds svn_id of last commit

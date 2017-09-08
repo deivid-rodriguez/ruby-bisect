@@ -11,20 +11,28 @@ style and bash lessons from [ruby-install].
 * [bash]
 * [chruby]
 
+## Install
+
+```
+git clone https://github.com/deivid-rodriguez/ruby-bisect
+```
+
 ## Synopsis
+
+From your target project directory,
 
 * Bisect `myscript.rb`, known to work with MRI revision r55000, but failing
   against ruby-core latest master.
 
 ```
-$ ruby-bisect 55000 -- myscript.rb
+/path/to/ruby-bisect/bin/ruby-bisect 55000 -- myscript.rb
 ```
 
 * Bisect `myscript.rb`, known to work with MRI revision r55000 and known to
   fail with MRI revision r55100.
 
 ```
-$ ruby-bisect 55000 551000 -- myscript.rb
+/path/to/ruby-bisect/bin/ruby-bisect 55000 551000 -- myscript.rb
 ```
 
 [bash]: https://www.gnu.org/software/bash/
