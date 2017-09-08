@@ -11,6 +11,12 @@ style and bash lessons from [ruby-install].
 * [bash]
 * [chruby]
 
+## Install
+
+```
+git clone https://github.com/deivid-rodriguez/ruby-bisect
+```
+
 ## Synopsis
 
 * Bisect `myscript.rb`, known to work with MRI revision r55000, but failing
