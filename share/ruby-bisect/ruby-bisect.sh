@@ -101,7 +101,7 @@ function parse_options() {
     fail "COMMAND required"
   fi
 
-  command=$*
+  cmd=$*
 }
 
 function parse_revisions() {
@@ -122,7 +122,7 @@ function ruby_bisect() {
   git_bisect start
   git_bisect good "$good_revision"
   git_bisect bad "$bad_revision"
-  git_bisect run "$RUBY_BISECT_DIR/check_revision.sh" "$project_dir" -- "$command"
+  git_bisect run "$RUBY_BISECT_DIR/check_revision.sh" "$project_dir" -- "$cmd"
   git_in_ruby_dir clean -fd && git_bisect reset
 }
 
