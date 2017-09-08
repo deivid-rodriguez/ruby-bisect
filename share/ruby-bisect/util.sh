@@ -47,9 +47,9 @@ function run() {
 function err() {
   if [[ "$1" == *$'\n'* ]]
   then
-    echo -e "*** Error: \n$1" >&2
+    echo -e "\n*** Error: \n$1" >&2
   else
-    echo "*** Error: $1" >&2
+    echo -e "\n*** Error: $1" >&2
   fi
 }
 
