@@ -3,6 +3,7 @@
 ruby_bisect_version="0.0.1"
 project_dir=$(pwd)
 ruby_dir="$HOME/src/ruby-head"
+git_extras_dir="$RUBY_BISECT_DIR/vendor/git-extras"
 
 # shellcheck source=share/ruby-bisect/util.sh
 source "$RUBY_BISECT_DIR/util.sh"
@@ -25,7 +26,7 @@ function git_bisect() {
 # Clones Ruby repo and switches to it
 #
 function clone_ruby() {
-  run git clone git@github.com:ruby/ruby.git "$ruby_dir"
+  "$git_extras_dir/bin/git-force-clone" git@github.com:ruby/ruby.git "$ruby_dir"
 }
 
 #
