@@ -33,7 +33,7 @@ fi
 run ./configure --disable-install-doc --prefix="$ruby_install_dir"
 
 # Compile and install Ruby
-run make && run make install
+run make -j && run make install
 
 # Back to projects directory
 cd "$project_dir" || exit 1
