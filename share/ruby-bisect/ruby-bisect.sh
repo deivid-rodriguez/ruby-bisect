@@ -36,7 +36,6 @@ function svn2git {
   git_in_ruby_dir log --all --grep="trunk@$1" --pretty=format:'%h'
 }
 
-
 #
 # Prints usage information
 #
