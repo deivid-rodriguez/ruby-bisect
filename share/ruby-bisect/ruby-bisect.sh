@@ -59,6 +59,8 @@ function usage() {
     -V, --version  Display ruby-bisect's version
     -h, --help     Display this help message
     -c, --cleanup  Remove cloned ruby after bisection
+    -s, --switcher Use a specific version switcher, either chruby or rbenv
+                   (default: rbenv)
 
 USAGE
 }
@@ -67,20 +69,30 @@ USAGE
 # Parses command line options
 #
 function parse_options() {
-  case "$1" in
-    -h|--help)
-      usage
-      exit
-      ;;
-    -V|--version)
-      echo "ruby-bisect version $ruby_bisect_version"
-      exit
-      ;;
-    -c|--cleanup)
-      CLEANUP=1
-      shift
-      ;;
-  esac
+  while [[ $# -gt 0 ]]
+  do
+    case "$1" in
+      -h|--help)
+        usage
+        exit
+        ;;
+      -V|--version)
+        echo "ruby-bisect version $ruby_bisect_version"
+        exit
+        ;;
+      -c|--cleanup)
+        CLEANUP=1
+        shift
+        ;;
+      -s|--switcher)
+        export SWITCHER=$2
+        shift 2
+        ;;
+      *)
+        break
+        ;;
+    esac
+  done
 
   if (($# == 0))
   then

@@ -15,7 +15,14 @@ function last_revision() {
 # Construct names
 revision=$(last_revision)
 ruby_version_name=ruby-$revision
-ruby_install_dir=$HOME/.rubies/$ruby_version_name
+
+if [[ "$SWITCHER" == "rbenv" ]]
+then
+  ruby_install_dir=$HOME/.rubies/$ruby_version_name
+else
+  ruby_install_dir=$HOME/.rbenv/versions/$ruby_version_name
+fi
+
 project_dir=$1
 
 shift $(($(n_args "$@") + 1))
@@ -39,4 +46,9 @@ run make -j && run make install
 cd "$project_dir" || exit 1
 
 # Run passed command against the new ruby
-run chruby-exec "$ruby_version_name" -- "$@"
+if [[ "$SWITCHER" == "rbenv" ]]
+then
+  run chruby-exec "$ruby_version_name" -- "$@"
+else
+  RBENV_VERSION="$ruby_version_name" run "$@"
+fi
