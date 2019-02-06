@@ -2,7 +2,7 @@
 
 RUBY_BISECT_DIR=$(cd "${BASH_SOURCE[0]%/*}" && pwd)
 
-# shellcheck source=share/ruby-bisect/util.sh
+# shellcheck disable=SC1090
 source "$RUBY_BISECT_DIR/util.sh"
 
 #

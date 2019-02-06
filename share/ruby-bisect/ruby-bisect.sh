@@ -5,7 +5,7 @@ project_dir=$(pwd)
 ruby_dir="$HOME/src/ruby-head"
 git_extras_dir="$RUBY_BISECT_DIR/vendor/git-extras"
 
-# shellcheck source=share/ruby-bisect/util.sh
+# shellcheck disable=SC1090
 source "$RUBY_BISECT_DIR/util.sh"
 
 #
