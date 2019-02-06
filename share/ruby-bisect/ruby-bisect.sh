@@ -26,7 +26,7 @@ function git_bisect() {
 # Clones Ruby repo and switches to it
 #
 function clone_ruby() {
-  "$git_extras_dir/bin/git-force-clone" git@github.com:ruby/ruby.git "$ruby_dir"
+  "$git_extras_dir/bin/git-force-clone" https://github.com/ruby/ruby "$ruby_dir"
 }
 
 #
