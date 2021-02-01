@@ -9,7 +9,7 @@ source "$RUBY_BISECT_DIR/util.sh"
 # Finds svn_id of last commit
 #
 function last_revision() {
-  git show -s --pretty=format:'%b' | grep -E -o "trunk@[0-9]+" | cut -d@ -f2
+  git show -s --pretty=format:'%h'
 }
 
 # Construct names
