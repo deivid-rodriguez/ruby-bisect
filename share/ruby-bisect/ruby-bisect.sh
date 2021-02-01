@@ -30,13 +30,6 @@ function clone_ruby() {
 }
 
 #
-# Translates a commit's svn id to its git sha1 using git's log
-#
-function svn2git {
-  git_in_ruby_dir log --all --grep="trunk@$1" --pretty=format:'%h'
-}
-
-#
 # Prints usage information
 #
 function usage() {
@@ -117,11 +110,11 @@ function parse_options() {
 }
 
 function parse_revisions() {
-  good_revision=$(svn2git "$good_svn_id")
+  good_revision=$(echo "$good_svn_id")
 
   if [[ -v bad_svn_id ]]
   then
-    bad_revision=$(svn2git "$bad_svn_id")
+    bad_revision=$(echo "$bad_svn_id")
   else
     bad_revision=$(git -C "$ruby_dir" show -s --pretty=format:'%h')
   fi
